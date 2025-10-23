@@ -1,0 +1,38 @@
+# Dependencies
+/node_modules
+.nvmrc
+package-lock.json
+
+# Next.js build output
+/.next/
+/out/
+/build
+next-env.d.ts
+
+# Public files
+/public
+
+# Styles
+*.scss
+*.css
+
+# Docker
+Dockerfile
+.dockerignore
+/docker-compose.*
+.env*
+
+# Version control & project settings
+/.git
+.github/workflows/docker-build.yml
+.gitignore
+.gitlab-ci.yml
+.idea
+
+# Docs files
+*.md
+*.adoc
+
+# Settings
+.lintstagedrc
+prettierrc.json

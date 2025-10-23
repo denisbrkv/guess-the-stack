@@ -1,0 +1,6 @@
+// Basic
+node_modules/**
+build/**
+
+// Plugins styles
+**/*.min.css
