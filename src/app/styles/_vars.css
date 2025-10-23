@@ -1,0 +1,22 @@
+:root {
+    /* Шрифты */
+    --font-line-title: 120%;
+    --font-line: 155%;
+    --font-line-accent: 140%;
+    --font-size-m: 18px;
+
+    /* Цвета */
+    --primary-color: #1A1A1A;
+    --accent-color: #4F46E5;
+    --secondary-color: #5B6475;
+    --border-color: #E6E8EE;
+    --bg-base-color: #F7F8FA;
+    --bg-white-color: #FFF;
+    --overlay-color: rgb(26 26 26 / 49%);
+
+    /* Индексы */
+
+    /* Прочее */
+    --primary-transition: 0.3s ease;
+    --primary-box-shadow: 0 4px 8px 0 rgb(0 0 0 / 8%);
+}
