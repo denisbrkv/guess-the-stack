@@ -5,8 +5,8 @@ html {
 body {
     font-family: var(--font-family-main), sans-serif;
     font-size: var(--font-size-m);
-    color: var(--primary-color);
-    background-color: var(--bg-white-color);
+    color: var(--secondary-text-color);
+    background-color: var(--bg-base-color);
     font-style: normal;
     font-weight: 400;
     line-height: var(--font-line);
@@ -15,13 +15,18 @@ body {
     flex-direction: column;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    line-height: var(--font-line);
+h1 {
+    color: var(--primary-color);
+    line-height: var(--font-line-title);
+    font-size: clamp(2rem, 10vw, 7.5rem);
     font-weight: 700;
+    text-align: center;
+    letter-spacing: -0.05em;
 }
 
-main {
-    flex: 1;
+h1::selection {
+    background: var(--bg-base-color);
+    color: var(--secondary-text-color);
 }
 
 a {
@@ -29,10 +34,5 @@ a {
 }
 
 a:hover {
-    color: var(--accent-color);
-}
-
-.container {
-    max-width: 1440px;
-    margin: 0 auto;
+    color: var(--accent-text-color);
 }
