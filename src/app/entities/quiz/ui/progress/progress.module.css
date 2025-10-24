@@ -1,0 +1,36 @@
+.progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 7vh 0 2.6vh;
+}
+
+.progress__item {
+    display: flex;
+    align-items: center;
+}
+
+.progress__circle {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 4px solid var(--bg-grey-color);
+}
+
+.progress__circle--active,
+.progress__circle--completed {
+    border: 4px solid var(--primary-color);
+    background-color: transparent;
+}
+
+.progress__line {
+    width: 26px;
+    height: 4px;
+    background-color: var(--bg-grey-color);
+    margin: 0 10px;
+}
+
+.progress__line--completed {
+    background-color: var(--primary-color);
+}
