@@ -10,12 +10,6 @@ const config = {
         message: "Expected class selector to follow BEM convention",
       },
     ],
-    "declaration-property-value-disallowed-list": [
-      {},
-      {
-        ignoreProperties: ["-webkit-mask"],
-      },
-    ],
   },
 };
 
