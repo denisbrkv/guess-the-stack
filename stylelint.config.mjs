@@ -10,6 +10,7 @@ const config = {
         message: "Expected class selector to follow BEM convention",
       },
     ],
+    "declaration-property-value-no-unknown": null,
   },
 };
 

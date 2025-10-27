@@ -9,10 +9,12 @@
     --primary-color: #06DF65;
     --secondary-text-color: #FFF;
     --accent-text-color: #121515;
+    --white-text-color: #FFF;
     --border-color: #E6E8EE;
     --bg-base-color: #1F1F20;
     --bg-white-color: #FFF;
     --bg-grey-color: #595959;
+    --bg-graphite-color: #3A3838;
 
     /* Прочее */
     --primary-transition: 0.3s ease;
