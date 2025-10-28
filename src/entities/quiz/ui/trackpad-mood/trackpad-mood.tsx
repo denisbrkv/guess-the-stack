@@ -7,6 +7,7 @@ export const TrackpadMood = ({
 }: {
   onSelect?: (mood: string) => void;
 }) => {
+  const [currentMood, setCurrentMood] = useState<string>("Грустное");
   const [position, setPosition] = useState({ x: 25, y: 25 });
   const [dragging, setDragging] = useState(false);
   const trackpadRef = useRef<HTMLDivElement>(null);
@@ -36,43 +37,51 @@ export const TrackpadMood = ({
     else if (yPct >= 50 && xPct < 50) mood = "Грустное";
     else mood = "Спокойное";
 
-    onSelect?.(mood);
+    setCurrentMood(mood);
   };
 
   return (
-    <div
-      ref={trackpadRef}
-      className={styles.trackpad}
-      onMouseMove={handleMouseMove}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-    >
-      <div className={styles.trackpad__image} />
-
+    <div className={styles.trackpad}>
       <div
-        className={styles.thumb}
-        style={{
-          left: `${position.x}%`,
-          top: `${position.y}%`,
-        }}
-        onMouseDown={(e) => {
-          e.stopPropagation();
-          setDragging(true);
-        }}
+        ref={trackpadRef}
+        className={styles.trackpad__inner}
+        onMouseMove={handleMouseMove}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
       >
-        <div className={styles.thumb__center} />
-      </div>
-      <div className={styles.labels}>
-        <div className={styles.labels__row}>
-          <span>ЭНЕРГИЧНОЕ</span>
-          <span>ВЕСЁЛОЕ</span>
+        <div className={styles.trackpad__image} />
+
+        <div
+          className={styles.thumb}
+          style={{
+            left: `${position.x}%`,
+            top: `${position.y}%`,
+          }}
+          onMouseDown={(e) => {
+            e.stopPropagation();
+            setDragging(true);
+          }}
+        >
+          <div className={styles.thumb__center} />
         </div>
-        <div className={styles.labels__row}>
-          <span>ГРУСТНОЕ</span>
-          <span>СПОКОЙНОЕ</span>
+        <div className={styles.labels}>
+          <div className={styles.labels__row}>
+            <span>ЭНЕРГИЧНОЕ</span>
+            <span>ВЕСЁЛОЕ</span>
+          </div>
+          <div className={styles.labels__row}>
+            <span>ГРУСТНОЕ</span>
+            <span>СПОКОЙНОЕ</span>
+          </div>
         </div>
       </div>
+      <button
+        className={styles.trackpad__result}
+        onClick={() => onSelect?.(currentMood)}
+      >
+        Узнать результаты
+      </button>
     </div>
   );
 };

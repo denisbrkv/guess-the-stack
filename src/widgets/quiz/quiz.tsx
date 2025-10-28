@@ -11,6 +11,19 @@ export const Quiz = () => {
   const [selectedStack, setSelectedStack] = useState<string | null>(null);
   const [selectedMood, setSelectedMood] = useState<string | null>(null);
 
+  const getTitle = () =>
+    step === 3 ? (
+      <>
+        Теперь выбери <br /> своё настроение
+      </>
+    ) : step === 4 ? (
+      <>
+        И так, <br /> твой трек...
+      </>
+    ) : (
+      "Угадай стеки"
+    );
+
   const handleStackSelect = (stack: string) => {
     setSelectedStack(stack);
     setStep(2);
@@ -23,8 +36,8 @@ export const Quiz = () => {
 
   return (
     <>
-      <h1>Угадай стеки</h1>
-      <Progress currentStep={step} totalSteps={4} />
+      <h1>{getTitle()}</h1>
+      {step <= 2 && <Progress currentStep={step} totalSteps={4} />}
       {step === 1 && (
         <Options
           options={STACKS.map((stack) => stack.title)}
@@ -40,7 +53,7 @@ export const Quiz = () => {
           onNext={() => setStep(3)}
         />
       )}
-      {step === 3 && <TrackpadMood />}
+      {step === 3 && <TrackpadMood onSelect={handleMoodSelect} />}
       {step === 4 && selectedStack && selectedMood && (
         <div>
           <h2>Результат</h2>

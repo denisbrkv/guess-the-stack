@@ -1,8 +1,15 @@
 .trackpad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 17vh;
+    margin: 21vh auto 13vh;
+}
+
+.trackpad__inner {
     position: relative;
     width: 83vw;
     height: 19vw;
-    margin: 0 auto;
     border-radius: 30px;
     background-color: var(--bg-grey-color);
     overflow: hidden;
@@ -74,3 +81,18 @@
     font-size: clamp(1rem, 2vw, 2rem);
 }
 
+.trackpad__result {
+    display: block;
+    margin: 0 auto;
+    width: 67vw;
+    height: 9vh;
+    background: var(--bg-white-color);
+    color: var(--accent-text-color);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 4.6vw, 2.4rem);
+    border-radius: 4vh;
+    line-height: var(--font-line-accent);
+    letter-spacing: -5%;
+    text-align: center;
+    cursor: pointer;
+}
