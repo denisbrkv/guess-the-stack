@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { sbSans } from "@/shared/config/fonts";
+import { siteUrl } from "@/shared/config/routerConfig";
 
 import "./styles/index.css";
 
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
     siteName: "Угадай стеки - Звук",
     images: [
       {
-        url: "/icon.png",
+        url: `${siteUrl}/icon.png`,
         width: 512,
         height: 512,
         alt: "Угадай стеки — Звук",
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Угадай стеки — Звук",
     description: "Угадай стеки — Звук",
-    images: ["/icon.png"],
+    images: [`${siteUrl}/icon.png`],
   },
 };
 
