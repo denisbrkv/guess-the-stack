@@ -14,35 +14,36 @@
     margin: 0 auto;
     border-radius: 15px;
     background-color: var(--bg-grey-color);
-    overflow: hidden;
+    overflow: visible;
     user-select: none;
-    cursor: none;
+    cursor: default;
 }
 
-.overlay {
+.trackpad__overlay {
     position: absolute;
     inset: 0;
     pointer-events: none;
 }
 
-.gradient {
+.trackpad__gradient {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.thumb {
+.trackpad__thumb {
     position: absolute;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: white;
+    background: var(--bg-white-color);
     transform: translate(-50%, -50%);
     box-shadow: 0 0 30px 10px white;
     pointer-events: none;
+    cursor: pointer;
 }
 
-.labels {
+.trackpad__labels {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -54,27 +55,27 @@
     font-weight: 700;
     z-index: 3;
     pointer-events: none;
-
-    .row {
-        display: flex;
-        justify-content: space-between;
-    }
 }
 
-.dots {
+.trackpad__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.trackpad__dots {
     position: absolute;
     top: 0;
     left: 0;
     display: grid;
     grid-template-columns: repeat(40, 1fr);
-    grid-template-rows: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     width: 100%;
     height: 100%;
     z-index: 1;
     pointer-events: none;
 }
 
-.dot {
+.trackpad__dot {
     width: 0.2rem;
     height: 0.2rem;
     background-color: var(--bg-white-color);
@@ -93,5 +94,15 @@
     line-height: var(--font-line-accent);
     letter-spacing: -5%;
     text-align: center;
+    cursor: pointer;
+}
+
+.trackpad__area {
+    position: absolute;
+    top: 25%;
+    height: 50%;
+    left: 5%;
+    width: 90%;
+    touch-action: none;
     cursor: pointer;
 }

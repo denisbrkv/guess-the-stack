@@ -8,3 +8,5 @@ export const moodMap: Record<string, Mood> = {
 };
 
 export type MoodLabel = keyof typeof moodMap;
+
+export const initialPercent = { x: 0, y: 100 };
