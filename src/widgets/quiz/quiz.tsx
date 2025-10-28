@@ -2,14 +2,21 @@
 
 import { useState } from "react";
 
-import { Description, Options, Progress, TrackpadMood } from "@/entities/quiz";
+import {
+  Description,
+  Mood,
+  Options,
+  Progress,
+  Result,
+  TrackpadMood,
+} from "@/entities/quiz";
 
 import { STACKS } from "./constants";
 
 export const Quiz = () => {
   const [step, setStep] = useState(1);
   const [selectedStack, setSelectedStack] = useState<string | null>(null);
-  const [selectedMood, setSelectedMood] = useState<string | null>(null);
+  const [selectedMood, setSelectedMood] = useState<Mood | null>(null);
 
   const getTitle = () =>
     step === 3 ? (
@@ -29,7 +36,7 @@ export const Quiz = () => {
     setStep(2);
   };
 
-  const handleMoodSelect = (mood: string) => {
+  const handleMoodSelect = (mood: Mood) => {
     setSelectedMood(mood);
     setStep(4);
   };
@@ -55,12 +62,7 @@ export const Quiz = () => {
       )}
       {step === 3 && <TrackpadMood onSelect={handleMoodSelect} />}
       {step === 4 && selectedStack && selectedMood && (
-        <div>
-          <h2>Результат</h2>
-          <p>Стек: {selectedStack}</p>
-          <p>Настроение: {selectedMood}</p>
-          <button onClick={() => setStep(1)}>Пройти ещё раз</button>
-        </div>
+        <Result mood={selectedMood} />
       )}
     </>
   );
