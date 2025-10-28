@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { Description, Options, Progress } from "@/entities/quiz";
+import { Description, Options, Progress, TrackpadMood } from "@/entities/quiz";
 
 import { STACKS } from "./constants";
 
@@ -40,12 +40,7 @@ export const Quiz = () => {
           onNext={() => setStep(3)}
         />
       )}
-      {step === 3 && (
-        <Options
-          options={["Весёлое", "Серьёзное", "Грустное", "Угарное"]}
-          onSelect={handleMoodSelect}
-        />
-      )}
+      {step === 3 && <TrackpadMood />}
       {step === 4 && selectedStack && selectedMood && (
         <div>
           <h2>Результат</h2>
