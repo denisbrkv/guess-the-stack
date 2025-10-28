@@ -1,92 +1,91 @@
-.trackpad {
+.container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: 17vh;
-    margin: 21vh auto 13vh;
+    margin-top: 21vh;
 }
 
-.trackpad__inner {
+.trackpad {
     position: relative;
     width: 83vw;
-    height: 19vw;
-    border-radius: 30px;
+    height: 19vh;
+    margin: 0 auto;
+    border-radius: 15px;
     background-color: var(--bg-grey-color);
     overflow: hidden;
-    cursor: pointer;
-
-    --thumb-x-pct: 25%;
-    --thumb-y-pct: 25%;
+    user-select: none;
+    cursor: none;
 }
 
-.trackpad__image {
+.overlay {
     position: absolute;
     inset: 0;
-    background-image: url('/images/trackpad.png');
-    background-size: cover;
-    background-position: center;
-    z-index: 0;
     pointer-events: none;
-    clip-path: circle(3rem at var(--thumb-x-pct) var(--thumb-y-pct));
-    transition: clip-path 0.1s ease;
+}
+
+.gradient {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .thumb {
     position: absolute;
-    width: 20rem;
-    height: 20rem;
-    border-radius: 50%;
-    background: radial-gradient(
-            circle,
-            rgb(255 200 255 / 25%) 0%,
-            rgb(255 200 255 / 40%) 40%,
-            transparent 100%
-    );
-    filter: blur(30px);
-    left: var(--thumb-x-pct);
-    top: var(--thumb-y-pct);
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    pointer-events: none;
-    transition: left 0.1s ease, top 0.1s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.thumb__center {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: white;
-    box-shadow: 0 0 10px rgb(255 255 255 / 50%);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 30px 10px white;
+    pointer-events: none;
 }
 
 .labels {
     position: absolute;
-    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-size: clamp(0.7rem, 2vw, 2rem);
+    font-weight: 700;
+    z-index: 3;
     pointer-events: none;
-    padding: 2vw;
-    z-index: 4;
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
-.labels__row {
-    display: flex;
-    justify-content: space-between;
-    color: var(--white-text-color);
+.dots {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: repeat(40, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.dot {
+    width: 0.2rem;
+    height: 0.2rem;
+    background-color: var(--bg-white-color);
     opacity: 0.7;
-    font-size: clamp(1rem, 2vw, 2rem);
+    border-radius: 50%;
 }
 
 .trackpad__result {
-    display: block;
-    margin: 0 auto;
+    background-color: var(--bg-white-color);
     width: 67vw;
     height: 9vh;
-    background: var(--bg-white-color);
     color: var(--accent-text-color);
     font-weight: 700;
     font-size: clamp(1.5rem, 4.6vw, 2.4rem);

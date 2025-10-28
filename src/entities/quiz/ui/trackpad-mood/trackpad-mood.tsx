@@ -1,86 +1,111 @@
 import { useRef, useState } from "react";
 
-import { moodMap } from "./constats";
+import { Mood } from "@/entities/quiz";
+
+import { type MoodLabel, moodMap } from "./constants";
 import { TrackpadMoodProps } from "./types";
 
 import styles from "./trackpad-mood.module.css";
 
-export const TrackpadMood = ({ onSelect }: TrackpadMoodProps) => {
-  const [currentMood, setCurrentMood] =
-    useState<keyof typeof moodMap>("Грустное");
-  const [position, setPosition] = useState({ x: 25, y: 25 });
+const getLabel = (xPct: number, yPct: number): MoodLabel => {
+  if (yPct < 50 && xPct < 50) return "ЭНЕРГИЧНОЕ";
+  if (yPct < 50 && xPct >= 50) return "ВЕСЕЛОЕ";
+  if (yPct >= 50 && xPct < 50) return "ГРУСТНОЕ";
+  return "СПОКОЙНОЕ";
+};
+
+export const TrackpadMood = ({ onConfirm }: TrackpadMoodProps) => {
+  const [position, setPosition] = useState({ x: 100, y: 50 });
   const [dragging, setDragging] = useState(false);
-  const trackpadRef = useRef<HTMLDivElement>(null);
+  const [currentMood, setCurrentMood] = useState<Mood>("sad");
+  const padRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseDown = () => setDragging(true);
-  const handleMouseUp = () => setDragging(false);
+  const updatePosition = (clientX: number, clientY: number) => {
+    const rect = padRef.current?.getBoundingClientRect();
+    if (!rect) return;
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!dragging || !trackpadRef.current) return;
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
 
-    const rect = trackpadRef.current.getBoundingClientRect();
+    const clampedX = Math.max(0, Math.min(x, rect.width));
+    const clampedY = Math.max(0, Math.min(y, rect.height));
 
-    const xPx = e.clientX - rect.left;
-    const yPx = e.clientY - rect.top;
+    setPosition({ x: clampedX, y: clampedY });
 
-    const xPct = (xPx / rect.width) * 100;
-    const yPct = (yPx / rect.height) * 100;
+    const xPct = (clampedX / rect.width) * 100;
+    const yPct = (clampedY / rect.height) * 100;
 
-    trackpadRef.current.style.setProperty("--thumb-x-pct", `${xPct}%`);
-    trackpadRef.current.style.setProperty("--thumb-y-pct", `${yPct}%`);
-
-    setPosition({ x: xPct, y: yPct });
-
-    let mood = "";
-    if (yPct < 50 && xPct < 50) mood = "Энергичное";
-    else if (yPct < 50 && xPct >= 50) mood = "Весёлое";
-    else if (yPct >= 50 && xPct < 50) mood = "Грустное";
-    else mood = "Спокойное";
-
-    setCurrentMood(mood);
+    const label = getLabel(xPct, yPct);
+    setCurrentMood(moodMap[label]);
   };
 
+  const handleStart = (e: React.MouseEvent | React.TouchEvent) => {
+    setDragging(true);
+    const point = "touches" in e ? e.touches[0] : e;
+    updatePosition(point.clientX, point.clientY);
+  };
+
+  const handleMove = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!dragging) return;
+    const point = "touches" in e ? e.touches[0] : e;
+    updatePosition(point.clientX, point.clientY);
+  };
+
+  const handleEnd = () => setDragging(false);
+
   return (
-    <div className={styles.trackpad}>
+    <div className={styles.container}>
       <div
-        ref={trackpadRef}
-        className={styles.trackpad__inner}
-        onMouseMove={handleMouseMove}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
+        className={styles.trackpad}
+        ref={padRef}
+        onMouseDown={handleStart}
+        onTouchStart={handleStart}
+        onMouseMove={handleMove}
+        onTouchMove={handleMove}
+        onMouseUp={handleEnd}
+        onTouchEnd={handleEnd}
+        onMouseLeave={handleEnd}
       >
-        <div className={styles.trackpad__image} />
+        <div
+          className={styles.overlay}
+          style={{
+            maskImage: `radial-gradient(120px at ${position.x}px ${position.y}px, rgba(0,0,0,1) 0%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)`,
+            WebkitMaskImage: `radial-gradient(120px at ${position.x}px ${position.y}px, rgba(0,0,0,1) 0%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)`,
+          }}
+        >
+          <img src="/images/trackpad.png" alt="" className={styles.gradient} />
+        </div>
 
         <div
           className={styles.thumb}
-          style={{
-            left: `${position.x}%`,
-            top: `${position.y}%`,
-          }}
-          onMouseDown={(e) => {
-            e.stopPropagation();
-            setDragging(true);
-          }}
-        >
-          <div className={styles.thumb__center} />
-        </div>
+          style={{ left: `${position.x}px`, top: `${position.y}px` }}
+        />
+
         <div className={styles.labels}>
-          <div className={styles.labels__row}>
+          <div className={styles.row}>
             <span>ЭНЕРГИЧНОЕ</span>
-            <span>ВЕСЁЛОЕ</span>
+            <span>ВЕСЕЛОЕ</span>
           </div>
-          <div className={styles.labels__row}>
+          <div className={styles.row}>
             <span>ГРУСТНОЕ</span>
             <span>СПОКОЙНОЕ</span>
           </div>
         </div>
+
+        <div className={styles.dots}>
+          {[...Array(7)].map((_, row) =>
+            [...Array(40)].map((_, col) => (
+              <div key={`${row}-${col}`} className={styles.dot} />
+            )),
+          )}
+        </div>
       </div>
+
       <button
         className={styles.trackpad__result}
-        onClick={() => onSelect?.(moodMap[currentMood])}
+        onClick={() => onConfirm(currentMood)}
       >
-        Узнать результаты
+        Узнать результат
       </button>
     </div>
   );

@@ -60,7 +60,7 @@ export const Quiz = () => {
           onNext={() => setStep(3)}
         />
       )}
-      {step === 3 && <TrackpadMood onSelect={handleMoodSelect} />}
+      {step === 3 && <TrackpadMood onConfirm={handleMoodSelect} />}
       {step === 4 && selectedStack && selectedMood && (
         <Result mood={selectedMood} />
       )}
