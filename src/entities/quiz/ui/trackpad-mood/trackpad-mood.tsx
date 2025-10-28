@@ -1,26 +1,16 @@
 import { useRef, useState } from "react";
 
-import { Mood } from "@/entities/quiz";
+import { moodMap } from "./constats";
+import { TrackpadMoodProps } from "./types";
 
 import styles from "./trackpad-mood.module.css";
 
-export const TrackpadMood = ({
-  onSelect,
-}: {
-  onSelect?: (mood: Mood) => void;
-}) => {
+export const TrackpadMood = ({ onSelect }: TrackpadMoodProps) => {
   const [currentMood, setCurrentMood] =
     useState<keyof typeof moodMap>("Грустное");
   const [position, setPosition] = useState({ x: 25, y: 25 });
   const [dragging, setDragging] = useState(false);
   const trackpadRef = useRef<HTMLDivElement>(null);
-
-  const moodMap: Record<string, Mood> = {
-    Энергичное: "energetic",
-    Весёлое: "happy",
-    Грустное: "sad",
-    Спокойное: "calm",
-  };
 
   const handleMouseDown = () => setDragging(true);
   const handleMouseUp = () => setDragging(false);
