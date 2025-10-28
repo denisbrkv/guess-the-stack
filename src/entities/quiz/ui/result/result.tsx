@@ -1,40 +1,12 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import { QRCodeSVG } from "qrcode.react";
 
 import { Mood } from "@/entities/quiz";
 
+import { botName, trackByMood } from "./constants";
+
 import styles from "./result.module.css";
-
-import { QRCodeSVG } from "qrcode.react";
-
-const trackByMood = {
-  energetic: {
-    artist: "Сплин",
-    title: "Выхода нет",
-    cover: "/covers/sad.png",
-    audio: "/audio/sad.mp3",
-  },
-  happy: {
-    artist: "Сплин",
-    title: "Выхода нет",
-    cover: "/covers/sad.png",
-    audio: "/audio/sad.mp3",
-  },
-  sad: {
-    artist: "Сплин",
-    title: "Выхода нет",
-    cover: "/covers/sad.png",
-    audio: "/audio/sad.mp3",
-  },
-  calm: {
-    artist: "Сплин",
-    title: "Выхода нет",
-    cover: "/covers/sad.png",
-    audio: "/audio/sad.mp3",
-  },
-};
-
-const botName = "ZvukogusBot";
 
 interface ResultProps {
   mood: Mood;

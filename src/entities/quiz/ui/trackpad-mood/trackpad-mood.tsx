@@ -73,7 +73,11 @@ export const TrackpadMood = ({ onConfirm }: TrackpadMoodProps) => {
             WebkitMaskImage: `radial-gradient(120px at ${position.x}px ${position.y}px, rgba(0,0,0,1) 0%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)`,
           }}
         >
-          <img src="/images/trackpad.png" alt="" className={styles.gradient} />
+          <img
+            src="/images/trackpad.png"
+            alt="trackpad"
+            className={styles.gradient}
+          />
         </div>
 
         <div

@@ -33,7 +33,7 @@ const eslintConfig = [
         "warn",
         {
           groups: [
-            ["^react", "^next", "^clsx"],
+            ["^react", "^next", "^clsx", "qrcode.react"],
             [
               "^@/src/",
               "^@/app/",
