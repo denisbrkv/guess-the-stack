@@ -14,7 +14,7 @@ export const trackByMood = {
   sad: {
     artist: "Сплин",
     title: "Выхода нет",
-    cover: "/covers/sad.png",
+    cover: "/covers/sad.jpg",
     audio: "/audio/sad.mp3",
   },
   calm: {
