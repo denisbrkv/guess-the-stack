@@ -43,11 +43,13 @@
 .result__qr {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1.4vh;
     margin: 8vh 0 14vh
 }
 
 .result__text  {
+    max-width: 400px;
     font-weight: 400;
     font-size: 24.82px;
     color: var(--white-text-color);

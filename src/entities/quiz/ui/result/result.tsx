@@ -48,9 +48,7 @@ export const Result = ({ mood }: ResultProps) => {
           marginSize={1}
         />
         <p className={styles.result__text}>
-          Следите за новыми <br />
-          вакансиями и статьями <br />
-          от наших экспертов
+          Переходи по QR-коду в Телеграм, чтобы бот засчитал тебе задание!
         </p>
       </div>
     </div>
