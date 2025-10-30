@@ -1,25 +1,25 @@
 export const trackByMood = {
   energetic: {
-    artist: "Kato, Jose, Kato, Dj Jose, Jon",
-    title: "Turn The Lights Off",
+    artist: "t.A.T.u.",
+    title: "Нас не догонят",
     cover: "/covers/energetic.jpg",
     audio: "/audio/energetic.mp3",
   },
   happy: {
-    artist: "Банд’Эрос",
-    title: "Про красивую жизнь",
+    artist: "Дискотека Авария",
+    title: "Арамзамзам",
     cover: "/covers/happy.jpg",
     audio: "/audio/happy.mp3",
   },
   sad: {
-    artist: "Сплин",
-    title: "Выхода нет",
+    artist: "МакSим",
+    title: "Знаешь ли ты",
     cover: "/covers/sad.jpg",
     audio: "/audio/sad.mp3",
   },
   calm: {
-    artist: "ДДТ",
-    title: "Что такое осень\n",
+    artist: "Отпетые мошенники",
+    title: "Люби меня люби",
     cover: "/covers/calm.jpg",
     audio: "/audio/calm.mp3",
   },
