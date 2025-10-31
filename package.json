@@ -12,6 +12,7 @@
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "stylelint:check": "stylelint \"**/*.css\"",
     "stylelint:fix": "stylelint \"**/*.css\" --fix",
+    "fix:widows": "node scripts/fix-widows.js",
     "prepare": "husky"
   },
   "dependencies": {
