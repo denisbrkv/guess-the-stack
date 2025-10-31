@@ -11,7 +11,10 @@ export const Description = ({
     <div className={styles.description}>
       <div className={styles.description__inner}>
         <h2 className={styles.description__title}>{title}</h2>
-        <p className={styles.description__text}>{description}</p>
+        <div
+          className={styles.description__text}
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
       </div>
       <button className={styles.description__button} onClick={onNext}>
         Далее

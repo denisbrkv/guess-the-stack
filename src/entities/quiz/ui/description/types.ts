@@ -1,5 +1,5 @@
 export interface DescriptionProps {
   title: string;
-  description?: string;
+  description: string;
   onNext: () => void;
 }

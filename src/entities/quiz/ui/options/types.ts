@@ -1,4 +1,6 @@
 export interface OptionsProps {
+  question: string;
   options: string[];
-  onSelect?: (option: string) => void;
+  correctIndex: number;
+  onAnswered: () => void;
 }

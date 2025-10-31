@@ -11,59 +11,73 @@ import {
   TrackpadMood,
 } from "@/entities/quiz";
 
-import { STACKS } from "./constants";
+import { QUIZ_QUESTIONS } from "./constants";
 
 export const Quiz = () => {
   const [step, setStep] = useState(1);
-  const [selectedStack, setSelectedStack] = useState<string | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedMood, setSelectedMood] = useState<Mood | null>(null);
 
+  const totalSteps = QUIZ_QUESTIONS.length * 2 + 2;
+  const currentQuestionIndex = Math.floor((step - 1) / 2);
+  const current = QUIZ_QUESTIONS[currentQuestionIndex];
+
   const getTitle = () =>
-    step === 3 ? (
+    step <= QUIZ_QUESTIONS.length * 2 ? (
+      "Угадай стек Звука"
+    ) : step === totalSteps - 1 ? (
       <>
         Теперь выбери <br /> своё настроение
       </>
-    ) : step === 4 ? (
-      <>
-        И так, <br /> твой трек...
-      </>
     ) : (
-      "Угадай стеки"
+      <>
+        Итак, <br /> твой трек...
+      </>
     );
 
-  const handleStackSelect = (stack: string) => {
-    setSelectedStack(stack);
-    setStep(2);
+  const handleOptionAnswered = () => {
+    setStep(step + 1);
+    setSelectedIndex(null);
   };
 
-  const handleMoodSelect = (mood: Mood) => {
+  const handleNextFromDescription = () => {
+    setSelectedIndex(null);
+    setStep(step + 1);
+  };
+
+  const handleMoodConfirm = (mood: Mood) => {
     setSelectedMood(mood);
-    setStep(4);
+    setStep(totalSteps);
   };
 
   return (
     <>
       <h1>{getTitle()}</h1>
-      {step <= 2 && <Progress currentStep={step} totalSteps={4} />}
-      {step === 1 && (
+      {step <= QUIZ_QUESTIONS.length * 2 && (
+        <Progress
+          currentStep={Math.ceil(step / 2)}
+          totalSteps={QUIZ_QUESTIONS.length}
+        />
+      )}
+      {step % 2 === 1 && step <= QUIZ_QUESTIONS.length * 2 && (
         <Options
-          options={STACKS.map((stack) => stack.title)}
-          onSelect={handleStackSelect}
+          question={current.question}
+          options={current.options}
+          correctIndex={current.correctIndex}
+          onAnswered={handleOptionAnswered}
         />
       )}
-      {step === 2 && selectedStack && (
+      {step % 2 === 0 && step <= QUIZ_QUESTIONS.length * 2 && (
         <Description
-          title={selectedStack}
-          description={
-            STACKS.find((s) => s.title === selectedStack)?.description
-          }
-          onNext={() => setStep(3)}
+          title={current.options[current.correctIndex]}
+          description={current.explanation}
+          onNext={handleNextFromDescription}
         />
       )}
-      {step === 3 && <TrackpadMood onConfirm={handleMoodSelect} />}
-      {step === 4 && selectedStack && selectedMood && (
-        <Result mood={selectedMood} />
+      {step === totalSteps - 1 && (
+        <TrackpadMood onConfirm={handleMoodConfirm} />
       )}
+      {step === totalSteps && selectedMood && <Result mood={selectedMood} />}
     </>
   );
 };
