@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
 import { DELAY_SHOW_ANSWER } from "@/entities/quiz/ui/question/constants";
@@ -16,11 +16,26 @@ export const Question = ({
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
 
+  const correctSoundRef = useRef<HTMLAudioElement | null>(null);
+  const incorrectSoundRef = useRef<HTMLAudioElement | null>(null);
+
   const handleSelect = (index: number) => {
     if (showFeedback) return;
+
     setSelectedIndex(index);
     setShowFeedback(true);
+
+    const isCorrect = index === correctIndex;
+    const sound = isCorrect
+      ? correctSoundRef.current
+      : incorrectSoundRef.current;
+    sound?.play().catch(() => {});
   };
+
+  useEffect(() => {
+    correctSoundRef.current = new Audio("/audio/correct.mp3");
+    incorrectSoundRef.current = new Audio("/audio/incorrect.mp3");
+  }, []);
 
   useEffect(() => {
     if (showFeedback) {

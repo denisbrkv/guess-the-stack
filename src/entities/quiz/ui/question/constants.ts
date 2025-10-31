@@ -1,1 +1,1 @@
-export const DELAY_SHOW_ANSWER = 1000;
+export const DELAY_SHOW_ANSWER = 700;
