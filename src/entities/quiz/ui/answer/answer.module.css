@@ -1,13 +1,13 @@
-.description {
+.answer {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 3vh;
 }
 
-.description__inner {
+.answer__inner {
     width: 84vw;
-    padding: 5.85vh 6.8vw 7vh;
+    padding: 6vh 6.8vw;
     background: var(--bg-white-color);
     border-radius: 2.56vh;
     box-shadow:
@@ -19,32 +19,46 @@
     gap: 2.1vw;
 }
 
-.description__title {
+.answer__title {
     color: var(--primary-color);
     font-weight: 700;
-    font-size: clamp(2rem, 11.7vw, 7rem);
+    font-size: clamp(1.4rem, 4.5vw, 4rem);
     line-height: var(--font-line-title);
     letter-spacing: -5%;
 }
 
-.description__text {
+.answer__text {
     color: var(--accent-text-color);
     line-height: var(--font-line);
-    font-size: clamp(1rem, 2.7vw, 2rem);
+    font-size: clamp(0.8rem, 2.7vw, 2rem);
     font-weight: 400;
     letter-spacing: -6%;
 }
 
-.description__button {
+.answer__text p {
+    margin-bottom: 8px;
+}
+
+.answer__button {
     background-color: var(--bg-white-color);
     width: 57vw;
     height: 9vh;
     color: var(--accent-text-color);
     font-weight: 700;
-    font-size: clamp(1.5rem, 4.6vw, 2.4rem);
+    font-size: clamp(1.4rem, 4.6vw, 2.4rem);
     border-radius: 4vh;
     line-height: var(--font-line-accent);
     letter-spacing: -5%;
     text-align: center;
     cursor: pointer;
+}
+
+@media (width <= 768px) {
+    .answer__title {
+        margin-bottom: 8px;
+    }
+
+    .answer__inner {
+        padding: 4vh 6vw 2vh;
+    }
 }

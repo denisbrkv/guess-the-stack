@@ -57,3 +57,9 @@
     letter-spacing: -6%;
     text-align: center;
 }
+
+@media (width <= 768px) {
+    .result__text  {
+        max-width: 300px;
+    }
+}

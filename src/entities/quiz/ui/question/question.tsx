@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 
-import { DELAY_SHOW_ANSWER } from "@/entities/quiz/ui/options/constants";
+import { DELAY_SHOW_ANSWER } from "@/entities/quiz/ui/question/constants";
 
 import { OptionsProps } from "./types";
 
-import styles from "./options.module.css";
+import styles from "./question.module.css";
 
-export const Options = ({
+export const Question = ({
   question,
   options,
   correctIndex,
@@ -34,15 +34,15 @@ export const Options = ({
   }, [showFeedback, onAnswered]);
 
   return (
-    <div className={styles.options}>
-      <p className={styles.options__question}>{question}</p>
+    <div className={styles.question}>
+      <p className={styles.question__text}>{question}</p>
       {options.map((option, index) => {
         const isSelected = selectedIndex === index;
         const isCorrect = index === correctIndex;
 
-        const className = clsx(styles.options__item, {
-          [styles["options__item--correct"]]: showFeedback && isCorrect,
-          [styles["options__item--incorrect"]]:
+        const className = clsx(styles.question__item, {
+          [styles["question__item--correct"]]: showFeedback && isCorrect,
+          [styles["question__item--incorrect"]]:
             showFeedback && isSelected && !isCorrect,
         });
 

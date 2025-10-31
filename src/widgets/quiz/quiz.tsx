@@ -3,10 +3,10 @@
 import { useState } from "react";
 
 import {
-  Description,
+  Answer,
   Mood,
-  Options,
   Progress,
+  Question,
   Result,
   TrackpadMood,
 } from "@/entities/quiz";
@@ -15,7 +15,6 @@ import { QUIZ_QUESTIONS } from "./constants";
 
 export const Quiz = () => {
   const [step, setStep] = useState(1);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedMood, setSelectedMood] = useState<Mood | null>(null);
 
   const totalSteps = QUIZ_QUESTIONS.length * 2 + 2;
@@ -35,13 +34,7 @@ export const Quiz = () => {
       </>
     );
 
-  const handleOptionAnswered = () => {
-    setStep(step + 1);
-    setSelectedIndex(null);
-  };
-
-  const handleNextFromDescription = () => {
-    setSelectedIndex(null);
+  const handleOptionNext = () => {
     setStep(step + 1);
   };
 
@@ -60,18 +53,18 @@ export const Quiz = () => {
         />
       )}
       {step % 2 === 1 && step <= QUIZ_QUESTIONS.length * 2 && (
-        <Options
+        <Question
           question={current.question}
           options={current.options}
           correctIndex={current.correctIndex}
-          onAnswered={handleOptionAnswered}
+          onAnswered={handleOptionNext}
         />
       )}
       {step % 2 === 0 && step <= QUIZ_QUESTIONS.length * 2 && (
-        <Description
+        <Answer
           title={current.options[current.correctIndex]}
           description={current.explanation}
-          onNext={handleNextFromDescription}
+          onNext={handleOptionNext}
         />
       )}
       {step === totalSteps - 1 && (
