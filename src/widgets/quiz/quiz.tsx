@@ -23,7 +23,7 @@ export const Quiz = () => {
 
   const getTitle = () =>
     step <= QUIZ_QUESTIONS.length * 2 ? (
-      "Угадай стек Звука"
+      "Познакомимся?"
     ) : step === totalSteps - 1 ? (
       <>
         Теперь выбери <br /> своё настроение
