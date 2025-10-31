@@ -51,7 +51,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-size: clamp(0.7rem, 2vw, 2rem);
+    font-size: clamp(0.6rem, 2vw, 2rem);
     font-weight: 700;
     z-index: 3;
     pointer-events: none;
@@ -89,7 +89,7 @@
     height: 9vh;
     color: var(--accent-text-color);
     font-weight: 700;
-    font-size: clamp(1.5rem, 4.6vw, 2.4rem);
+    font-size: clamp(1.4rem, 4.6vw, 2.4rem);
     border-radius: 4vh;
     line-height: var(--font-line-accent);
     letter-spacing: -5%;
@@ -105,4 +105,20 @@
     width: 90%;
     touch-action: none;
     cursor: pointer;
+}
+
+@media (width <= 768px) {
+    .trackpad {
+        width: 90vw;
+    }
+
+    .trackpad__thumb {
+        width: 20px;
+        height: 20px;
+        box-shadow: 0 0 20px 6px white;
+    }
+
+    .trackpad__labels {
+        padding: 4px 16px;
+    }
 }

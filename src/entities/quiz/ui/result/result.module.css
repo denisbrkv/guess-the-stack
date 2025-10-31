@@ -26,16 +26,16 @@
 .result__artist {
     font-weight: 500;
     color: var(--white-text-color);
-    font-size: 38.18px;
-    line-height: 43.63px;
+    font-size: clamp(1rem, 3.7vw, 3rem);
+    line-height: var(--font-line-accent);
     letter-spacing: -3%;
     margin-bottom: 10px;
 }
 
 .result__title {
     font-weight: 400;
-    font-size: 35.45px;
-    line-height: 40.91px;
+    font-size: clamp(1rem, 3.5vw, 3rem);
+    line-height: var(--font-line-accent);
     letter-spacing: 0%;
     color: var(--grey-light-text-color)
 }
@@ -44,8 +44,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.4vh;
-    margin: 8vh 0 14vh
+    gap: 2vh;
+    margin-top: 8vh;
 }
 
 .result__text  {
@@ -58,7 +58,24 @@
     text-align: center;
 }
 
+.result__box {
+    width: 100%;
+    max-width: 267px;
+}
+
 @media (width <= 768px) {
+    .result__track {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
+        margin-top: 4vh;
+    }
+
+    .result__box {
+        max-width: 180px;
+    }
+
     .result__text  {
         max-width: 300px;
     }

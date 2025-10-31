@@ -39,14 +39,16 @@ export const Result = ({ mood }: ResultProps) => {
       </div>
       <audio ref={audioRef} src={track.audio} loop />
       <div className={styles.result__qr}>
-        <QRCodeSVG
-          value={botLink}
-          size={267}
-          level="H"
-          fgColor="#000000"
-          bgColor="#ffffff"
-          marginSize={1}
-        />
+        <div className={styles.result__box}>
+          <QRCodeSVG
+            value={botLink}
+            level="H"
+            fgColor="#000000"
+            bgColor="#ffffff"
+            style={{ width: "100%", height: "auto" }}
+            marginSize={1}
+          />
+        </div>
         <p className={styles.result__text}>
           Переходи по QR-коду в Телеграм, чтобы бот засчитал тебе задание!
         </p>
