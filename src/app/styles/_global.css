@@ -36,3 +36,9 @@ a {
 a:hover {
     color: var(--accent-text-color);
 }
+
+@media (width <= 768px) {
+    h1 {
+        line-height: 100%;
+    }
+}

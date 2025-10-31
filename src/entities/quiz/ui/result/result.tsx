@@ -50,7 +50,8 @@ export const Result = ({ mood }: ResultProps) => {
           />
         </div>
         <p className={styles.result__text}>
-          Переходи по QR-коду в Телеграм, чтобы бот засчитал тебе задание!
+          Переходи по QR-коду в Телеграм, <br />
+          чтобы бот засчитал тебе задание!
         </p>
       </div>
     </div>
