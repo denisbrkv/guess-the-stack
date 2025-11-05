@@ -54,6 +54,12 @@ export const Result = ({ mood }: ResultProps) => {
           чтобы бот засчитал тебе задание!
         </p>
       </div>
+      <button
+        className={styles.result__restart}
+        onClick={() => window.location.reload()}
+      >
+        Пройти снова
+      </button>
     </div>
   );
 };
